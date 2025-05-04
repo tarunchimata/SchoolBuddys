@@ -116,3 +116,4 @@ SchoolsBuddys stands out as a safe, admin-controlled, school-based social networ
    - Phase 2: Mobile app + gallery + memory wall
    - Phase 3: Career, mentorship, and video integration
 
+
