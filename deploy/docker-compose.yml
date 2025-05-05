@@ -4,8 +4,8 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ../app/src/backend
-      dockerfile: ../../build/Dockerfile.backend
+      context: ../
+      dockerfile: build/Dockerfile.backend
     container_name: schoolbuddys-backend
     env_file:
       - ../app/config/.env
@@ -19,8 +19,8 @@ services:
 
   frontend:
     build:
-      context: ../app/frontend
-      dockerfile: ../../build/Dockerfile.frontend
+      context: ../
+      dockerfile: build/Dockerfile.frontend
     container_name: schoolbuddys-frontend
     ports:
       - "3000:3000"
