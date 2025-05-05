@@ -1,0 +1,70 @@
+
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ../app/backend
+      dockerfile: ../../build/Dockerfile.backend
+    container_name: schoolbuddys-backend
+    env_file:
+      - ../app/config/.env
+    ports:
+      - "5000:5000"
+    volumes:
+      - ../app/backend:/app/backend
+    depends_on:
+      - db
+      - redis
+
+  frontend:
+    build:
+      context: ../app/frontend
+      dockerfile: ../../build/Dockerfile.frontend
+    container_name: schoolbuddys-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../app/frontend:/app/frontend
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:14
+    container_name: schoolbuddys-db
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: schoolbuddys
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:alpine
+    container_name: schoolbuddys-redis
+    ports:
+      - "6379:6379"
+
+  mailer:
+    image: bytemark/smtp
+    container_name: smtp-relay
+    restart: always
+    ports:
+      - "25:25"
+
+  telegram-bot:
+    image: my-custom/telegram-bot
+    container_name: telegram-bot
+    build:
+      context: ../app/bots/telegram
+      dockerfile: Dockerfile
+    env_file:
+      - ../app/config/.env
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
