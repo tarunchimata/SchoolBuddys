@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from './index.js';
+import { sequelize } from './db.js';  // <- not from index.js
 
 const User = sequelize.define('User', {
   fullName: {
@@ -37,4 +37,3 @@ const User = sequelize.define('User', {
 });
 
 export default User;
-

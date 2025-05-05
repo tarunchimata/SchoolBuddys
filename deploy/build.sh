@@ -26,6 +26,19 @@ docker-compose down
 echo "Forcing removal of containers..."
 docker-compose rm -f
 
+# Remove dangling images
+echo "Removing dangling images..."
+docker rmi $(docker images -f "dangling=true" -q) || true
+
+
+# Remove unused volumes only this project
+# echo "Removing unused volumes..."
+# docker volume rm $(docker volume ls -qf dangling=true) || true
+# Remove unused networks
+echo "Removing unused volumes..."
+docker volume rm $(docker volume ls -qf dangling=true) || true
+
+
 # Build and start containers in detached mode
 echo "Building and starting containers..."
 docker-compose up --build -d
