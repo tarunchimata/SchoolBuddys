@@ -4,7 +4,7 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ../app/backend
+      context: ../app/src/backend
       dockerfile: ../../build/Dockerfile.backend
     container_name: schoolbuddys-backend
     env_file:
