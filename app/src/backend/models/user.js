@@ -1,39 +1,25 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from './db.js';  // <- not from index.js
+import { sequelize } from './index.js';
 
-const User = sequelize.define('User', {
+export const User = sequelize.define('User', {
   fullName: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  email: {
-    type: DataTypes.STRING,
-    unique: true,
-    allowNull: false,
-  },
-  phone: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  passwordHash: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  schoolName: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  classYear: {
     type: DataTypes.STRING,
     allowNull: false,
   },
   section: {
     type: DataTypes.STRING,
   },
-  approved: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
+  school: {
+    type: DataTypes.STRING,
+  },
+  email: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: false,
+    validate: { isEmail: true }
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
 });
-
-export default User;

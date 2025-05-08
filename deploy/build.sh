@@ -44,3 +44,9 @@ echo "Building and starting containers..."
 docker-compose up --build -d
 
 echo "Docker Compose process completed successfully."
+
+# echo "To view logs, run: docker-compose logs -f"
+echo "View the Lohs o container logs"
+docker-compose logs -f
+
+

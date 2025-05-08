@@ -1,7 +1,7 @@
 import { sequelize } from './db.js';
-import User from './user.js';
+import { User } from './user.js';
 
-await sequelize.sync(); // or sync({ force: true }) if needed
+await sequelize.sync();
 console.log('Database synced.');
 
 export { sequelize, User };

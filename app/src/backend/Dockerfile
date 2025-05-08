@@ -10,7 +10,7 @@ WORKDIR /app
 
 # Copy package files and install dependencies first (leverages Docker cache)
 COPY package*.json ./
-RUN npm install && npm install cors
+RUN npm install && npm install bcryptjs cors
 
 # Copy remaining source code
 COPY . .
